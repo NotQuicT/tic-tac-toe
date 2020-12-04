@@ -1,5 +1,5 @@
 {
-    "name": "Tic Tac Toe",
+    "name": "Main Remote",
     "description": "",
     "dependencies": {
         "core": "*",

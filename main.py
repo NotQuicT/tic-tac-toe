@@ -1,36 +1,24 @@
-def on_button_pressed_a():
-    basic.show_leds("""
-        . . . . .
-        . . . . #
-        . . . # .
-        # . # . .
-        . # . . .
-        """)
-input.on_button_pressed(Button.A, on_button_pressed_a)
-
 def on_button_pressed_ab():
-    radio.send_string("New Game")
-    basic.show_leds("""
-        . . . . .
-        . . . . #
-        . . . # .
-        # . # . .
-        . # . . .
-        """)
+    pass
 input.on_button_pressed(Button.AB, on_button_pressed_ab)
 
 def on_received_string(receivedString):
-    pass
+    global A_ready
+    ready = 0
+    if ready:
+        A_ready = 1
 radio.on_received_string(on_received_string)
 
-def on_button_pressed_b():
-    basic.show_leds("""
-        # . . . #
-        . # . # .
-        . . # . .
-        . # . # .
-        # . . . #
-        """)
-input.on_button_pressed(Button.B, on_button_pressed_b)
-
-radio.set_group(69)
+A_ready = 0
+while not (input.button_is_pressed(Button.A)):
+    if not (input.button_is_pressed(Button.A)):
+        basic.show_string("PRESS A TO PAIR", 100)
+radio.set_group(1)
+radio.send_string("PRESS A+B TO PAIR")
+while A_ready != 1:
+    pass
+while not (input.button_is_pressed(Button.B)):
+    if not (input.button_is_pressed(Button.B)):
+        basic.show_string("PRESS B TO PAIR", 100)
+radio.set_group(2)
+radio.send_string("PRESS A+B TO PAIR")
